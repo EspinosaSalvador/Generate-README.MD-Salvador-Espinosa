@@ -1,4 +1,6 @@
+// * functions to render license badges in the markdown project and based on the license that was choosen it will change the input
 function renderLicenseBadge(license) {
+  // * give us the switch that corresponds to the answers
   switch (license) {
     case "MIT":
       return "[![License:MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
@@ -9,6 +11,7 @@ function renderLicenseBadge(license) {
     case "BSD 3":
       return "[![License:BSD3](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)";
     default:
+      // ! if there is nothing it will not give a badge
       return "";
   }
 }
@@ -29,13 +32,14 @@ function renderLicenseLink(license) {
 }
 
 function renderLicenseSection(license) {
+  // * if the licese section is incorrect it will return an empty string or line
   if (!license) return "";
   return `## License
   ${renderLicenseBadge(license)}
 This project is licensed under the ${license} license. 
 See [LICENSE](${renderLicenseLink(license)}) for more information.`;
 }
-
+// * main function genereate the markdown for the README file.
 function generateMarkdown(data) {
   return `# ${data.title}
 
